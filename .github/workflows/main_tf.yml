@@ -47,12 +47,12 @@ jobs:
       - name: Tofu Plan
         run: tofu plan
       - name: Tofu apply
-        run : Tofu apply
+        run : tofu apply
 
       # Publish assets
       - name: Upload kubeconfig
         uses: actions/upload-artifact@v4
         with: 
           name: kubeconfig
-          path: kibeconfig
+          path: kubeconfig
         
