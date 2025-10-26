@@ -47,7 +47,7 @@ jobs:
       - name: Tofu Plan
         run: tofu plan
       - name: Tofu apply
-        run : tofu apply
+        run : tofu apply -no-color --auto-approve
 
       # Publish assets
       - name: Upload kubeconfig
