@@ -26,5 +26,22 @@ module "aws-network" {
   private_subnet_b_cidr = "10.0.192.0/18"
 }
 # EKS
+module "aws-eks" {
+  source = "github.com/jaconsta/msur-module-aws-kubernetes"
+
+  ms_namespace       = "microservices"
+  env_name           = local.env_name
+  aws_region         = local.aws_region
+  cluster_name       = local.k8s_cluster_name
+  vpc_id             = module.aws-network.vpc_id
+  cluster_subnets_ids = module.aws-network.subnets_ids
+
+  nodegroup_subnets_ids     = module.aws-network.private-subnets_ids
+  nodegroup_disk_size      = "20"
+  nodegroup_instance_types = ["t3.medium"]
+  nodegroup_desired_size   = 1
+  nodegroup_max_size       = 3
+  nodegroup_min_size       = 1
+}
 
 # GitOps
